@@ -13,6 +13,8 @@ parser.add_argument('--show_curve', default=True, type=bool, help='show curve')
 parser.add_argument('--show_heatmap', default=True, type=bool, help='show heatmap')
 
 
+model_weight_path = '/media/Data_3/hanningchen/ped2/weight'
+
 def val(cfg, train_scores=None, models=None, iter=None):
     '''
     ========================================
@@ -37,8 +39,10 @@ def val(cfg, train_scores=None, models=None, iter=None):
     generator = UNet(12, 3).cuda().eval()
 
     if cfg.trained_model:
-        generator.load_state_dict(torch.load(f'weights/' + cfg.trained_model + '.pth')['net_g'])
-        iter = torch.load(f'weights/' + cfg.trained_model + '.pth')['step']
+        #generator.load_state_dict(torch.load(f'weights/' + cfg.trained_model + '.pth')['net_g'])
+        generator.load_state_dict(torch.load(model_weight_path + '/' + cfg.trained_model + '.pth')['net_g'])
+        #iter = torch.load(f'weights/' + cfg.trained_model + '.pth')['step']
+        iter = torch.load(model_weight_path + '/' + cfg.trained_model + '.pth')['step']
         val_test_eval(cfg, generator, iter)
     else:
         print('no trained model!')

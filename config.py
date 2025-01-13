@@ -11,7 +11,7 @@ if not os.path.exists('results'):
 share_config = {'mode': 'training',
                 'dataset': 'ped2',
                 'img_size': (256, 256),
-                'data_root': 'data/'}  # remember the final '/'
+                'data_root': '/media/Data_3/hanningchen/'}  # remember the final '/'
 
 
 class dict2class:
